@@ -1,11 +1,11 @@
 import axios from 'axios'
-import quiz from './data/quiz.json'
+import QuizVal from './data/quiz-val.json'
 
 class Backend {
   constructor () {
     this.quizArchiveUrl = 'https://compromis.net/quiz/'
     this.apiBaseUrl = 'http://quiz.compromis.net/api/quiz/'
-    this.quizId = quiz.id
+    this.quizId = QuizVal.id
   }
 
   getArchive () {

@@ -19,6 +19,7 @@
           "gif": "Pd8Bf06Sas4yQ"
         },
         {
+          "name": "El tío ese de VOX",
           "message": "Encara que és cert que podria haver sigut ell perfectament, aquesta vegada la mentida ha eixit de la boca de Toni Cantó. Sorprés? Segur que no ;)",
           "points": 0,
           "gif": "l4HocPQcNLsi0erbq"
@@ -245,26 +246,26 @@
   "results": [
     {
       "minPoints": 0,
-      "maxPoints": 7,
-      "message": "Quan de Gürtel es tracta, sabem que és difícil diferenciar entre ficció i realitat",
+      "maxPoints": 4,
+      "message": "No estàs molt al dia de les barbaritats que es diuen en campanya. Però no et preocupes, eixa tranquilitat que t'endus.",
       "gif": "gOnd03UWo6hG0"
     },
     {
-      "minPoints": 8,
-      "maxPoints": 12,
-      "message": "Es nota que estàs ben informat, pero encara no eres un expert.",
+      "minPoints": 5,
+      "maxPoints": 7,
+      "message": "Aprobat. Encara que sempre es pot millorar, la majoria de metges recomanen aquest consum moderat de la campanya, i no més.",
       "gif": "t0005w3YYbuIU"
     },
     {
-      "minPoints": 13,
-      "maxPoints": 14,
-      "message": "Impressionant. Estàs fet un expert en detectar barbaritats",
+      "minPoints": 8,
+      "maxPoints": 9,
+      "message": "Notable. Es nota que estàs al dia de la campanya i atent a les locures que es diuen en ella.",
       "gif": "W12WAzuqod9VS"
     },
     {
-      "minPoints": 15,
-      "maxPoints": 15,
-      "message": "Tens el Barbaradar más agut de tots. Ningú supera la teua capacitat per a detectar barbaritats.",
+      "minPoints": 10,
+      "maxPoints": 10,
+      "message": "Excel·lent. Encara que és molt bo estar al dia de la campanya perquè no t'enganyen, la majoria de metges recomanen un consum més moderat.",
       "gif": "rFPH6jKnrAKU8"
     }
   ]

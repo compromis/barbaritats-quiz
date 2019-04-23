@@ -27,8 +27,7 @@
                   <Thumbs :class="{ 'upside-down': selectedOption.points == 0 }" />
                 </div>
                 <gif :id="selectedOption.gif" />
-                <h4>{{ selectedOption.message }}</h4>
-                <p>{{ question.message }}</p>
+                <p>{{ selectedOption.message }}</p>
                 <p v-if="nextQuestionId" class="next-button"><a :href="'#q' + nextQuestionId" v-scroll-to="'#q' + nextQuestionId">Següent pregunta</a></p>
                 <p v-else class="next-button"><a href="#results" v-scroll-to="'#results'">Resultats</a></p>
               </div>

@@ -1,21 +1,24 @@
 <template>
   <section class="intro container">
-    <p><span class="intro-flair">QUIZ</span></p>
+    <div class="language-switcher">
+      <div class="tabs is-toggle is-centered">
+        <ul>
+          <li :class="{ 'is-active': $i18n.locale === 'ca' }"><a href="#" @click.prevent="switchLanguage('ca')">Valencià</a></li>
+          <li :class="{ 'is-active': $i18n.locale === 'es' }"><a href="#" @click.prevent="switchLanguage('es')">Castellano</a></li>
+        </ul>
+      </div>
+    </div>
     <h3 class="intro-heading">
       <div class="intro-heading-emoji">
         <img src="../assets/images/emoji.png" width="100%" alt="Emoji" />
       </div>
       <div class="intro-heading-title">
-        <TitleCas v-if="$i18n.locale === 'ca'" />
+        <TitleCas v-if="$i18n.locale === 'es'" />
         <TitleVal v-else />
       </div>
     </h3>
-    <h2 class="intro-subheading">{{ $t('intro.title') }}</h2>
-    <p class="intro-description">{{ $t('intro.description') }}</p>
-    <ul>
-      <li><button @click="switchLanguage('ca')">Valencià</button></li>
-      <li><button @click="switchLanguage('es')">Castellano</button></li>
-    </ul>
+    <h2 class="intro-subheading"><span>{{ $t('intro.title') }}</span></h2>
+    <p class="intro-description"><span>{{ $t('intro.description') }}</span></p>
     <p class="intro-action"><a href="#q1" v-scroll-to="'#q1'"><span class="emoji">📝</span> {{ $t('intro.start') }}</a></p>
   </section>
 </template>
@@ -44,6 +47,23 @@ export default {
 <style lang="scss" scoped>
 @import '../variables';
 
+.language-switcher {
+  a {
+    color: $white;
+
+    &:hover {
+      background: $text-color;
+      color: $white;
+    }
+  }
+
+  li.is-active {
+    a {
+      background-color: $text-color;
+    }
+  }
+}
+
 .intro {
   padding: 2.5rem;
   text-align: center;
@@ -66,27 +86,44 @@ export default {
 }
 
 .intro-subheading {
-  font-size: 2rem;
+  font-size: 1.25rem;
   letter-spacing: -1px;
   line-height: 1;
+
+  span {
+    background: $text-color;
+    color: $white;
+    border-radius: .25rem;
+    padding: .25rem .75rem;
+  }
 }
 
 .intro-description {
   max-width: 800px;
   margin: 1rem auto;
+
+  span {
+    background: $white;
+    color: $text-color;
+    border-radius: .25rem;
+    padding: .25rem .75rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
 }
 
 .intro-flair {
-  border: 1px $text-color solid;
+  color: $white;
+  border: 1px $white solid;
   padding: 0.25rem 1rem;
   border-radius: 20px;
-  opacity: 0.75;
 }
 
 .intro-action {
   margin-top: 2rem;
 
   a {
+    background-color: rgba($magenta, .5);
     color: $text-color;
     border: 2px $text-color solid;
     border-radius: 30px;

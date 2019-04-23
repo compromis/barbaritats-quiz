@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { EventBus } from './event-bus'
 import AppHeader from './components/AppHeader'
 import AppFooter from './components/AppFooter'
 import QuizIntro from './components/QuizIntro'
@@ -43,9 +42,22 @@ export default {
       this.questions = QuizVal.questions
       this.results = QuizVal.results
     }
+  },
 
-    EventBus.$on('postStats', (option, question) => this.postStats(option, question))
-    EventBus.$on('postScore', (score) => this.postScore(score))
+  watch: {
+    '$i18n.locale': {
+      handler: function (newLocale) {
+        console.log(newLocale)
+        if (newLocale === 'es') {
+          this.questions = QuizCas.questions
+          this.results = QuizCas.results
+        } else {
+          this.questions = QuizVal.questions
+          this.results = QuizVal.results
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>
