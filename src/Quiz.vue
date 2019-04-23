@@ -15,7 +15,8 @@ import AppHeader from './components/AppHeader'
 import AppFooter from './components/AppFooter'
 import QuizIntro from './components/QuizIntro'
 import TrueFalseQuiz from './components/TrueFalseQuiz'
-import quiz from './data/quiz.json'
+import QuizCas from './data/quiz-cas.json'
+import QuizVal from './data/quiz-val.json'
 
 export default {
   name: 'quiz',
@@ -35,8 +36,13 @@ export default {
   },
 
   mounted () {
-    this.questions = quiz.questions
-    this.results = quiz.results
+    if (this.$i18n.locale === 'es') {
+      this.questions = QuizCas.questions
+      this.results = QuizCas.results
+    } else {
+      this.questions = QuizVal.questions
+      this.results = QuizVal.results
+    }
 
     EventBus.$on('postStats', (option, question) => this.postStats(option, question))
     EventBus.$on('postScore', (score) => this.postScore(score))
