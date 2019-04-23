@@ -1,0 +1,241 @@
+<template>
+  <div :class="{ 'question-outer-wrapper': true, 'question-hidden': !visible }" :id="'q' + question.id">
+    <div class="question-wrapper">
+      <div class="question">
+        <div class="question-image" :style="'background-image: url(static/img/questions/' + question.id + '.jpg)'"></div>
+        <div class="question-badge" v-if="question.badge"><span>{{ question.badge }}</span></div>
+        <h3>{{ question.name }}</h3>
+
+        <div class="question-options" :id="'o' + question.id">
+          <div v-for="option in question.options">
+            <quiz-option
+              :key="question.options.indexOf(option)"
+              :option="option"
+              :selected="selectedOption.name == option.name"
+              :revealed="selectedOption.name != null"
+              :question-id="question.id"
+              :disabled="selectedOption.name != null || !visible"
+              @change="selectOption" />
+          </div>
+        </div>
+
+        <div :id="'a' + question.id">
+          <transition name="slide">
+            <div class="answer" v-if="selectedOption.name">
+              <div :class="{ 'answer-wrapper': true, 'answered-correctly': selectedOption.points > 0, 'answered-incorrectly': selectedOption.points == 0 }">
+                <div class="answer-icon">
+                  <Thumbs :class="{ 'upside-down': selectedOption.points == 0 }" />
+                </div>
+                <gif :id="selectedOption.gif" />
+                <h4>{{ selectedOption.message }}</h4>
+                <p>{{ question.message }}</p>
+                <p v-if="nextQuestionId" class="next-button"><a :href="'#q' + nextQuestionId" v-scroll-to="'#q' + nextQuestionId">Següent pregunta</a></p>
+                <p v-else class="next-button"><a href="#results" v-scroll-to="'#results'">Resultats</a></p>
+              </div>
+            </div>
+          </transition>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { EventBus } from '../event-bus.js'
+import QuizOption from './QuizOption'
+import Gif from './Gif'
+import True from '../assets/images/true.svg'
+import False from '../assets/images/false.svg'
+import Thumbs from '../assets/images/thumbs.svg'
+
+export default {
+  name: 'quiz-question',
+
+  components: {
+    QuizOption,
+    Gif,
+    True,
+    False,
+    Thumbs
+  },
+
+  props: {
+    question: Object,
+    visible: Boolean,
+    nextQuestionId: [Number, Boolean]
+  },
+
+  data () {
+    return {
+      selectedOption: { name: null }
+    }
+  },
+
+  mounted () {
+    EventBus.$on('reset', () => { this.selectedOption = { name: null } })
+  },
+
+  methods: {
+    selectOption (option) {
+      const scrollTo = (option.points > 0) ? 'a' : 'o'
+      this.selectedOption = option
+      this.$emit('updateQuiz', option, this.question)
+      this.$emit('nextQuestion', this.question.id + 1)
+      this.$scrollTo('#' + scrollTo + this.question.id, 500, { offset: -75 })
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../variables';
+
+.question-outer-wrapper {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.question-hidden {
+  opacity: 0.5;
+}
+
+.question-wrapper {
+  border: 3px rgba(255, 255, 255, 0.2) solid;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.next-button {
+  margin-top: 1.5rem;
+
+  a {
+    color: $text-color-dark;
+    border:  2px $text-color-dark solid;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background: $text-color-dark;
+      color: #fff;
+    }
+  }
+}
+
+.question {
+  background: $white;
+  color: $text-color-dark;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 40px -5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.5rem 0;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  &-badge {
+    text-align: center;
+    margin-top: 2rem;
+
+    span {
+      background: $secondary-color;
+      color: #fff;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+  }
+
+  &-image {
+    margin: -3rem -3rem 1rem -3rem;
+    height: 220px;
+    border-bottom: 5px $secondary-color solid;
+    background-size: cover;
+  }
+
+  &-options {
+    margin-bottom: 0;
+
+    & > div:last-child {
+      margin-bottom: -1rem;
+    }
+  }
+}
+
+.answer {
+  position: relative;
+  background: $white;
+  margin: 2.5rem -1.5rem -1.5rem -1.5rem;
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    margin-top: -25px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+      fill: $text-color-dark;
+    }
+
+    .upside-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-gif {
+    max-width: 100%;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0.25rem 0;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
+.answer-wrapper {
+  padding: 1.5rem;
+  padding-left: 95px;
+}
+
+.answered-correctly {
+  background: lighten($true-color-end, 25%);
+}
+
+.answered-incorrectly {
+  background: lighten($false-color-start, 15%);
+}
+
+@media (min-width: 769px) {
+  .question {
+    h3 {
+      font-size: 1.5rem;
+      padding: 1rem 0;
+    }
+  }
+
+  .answer {
+    h4 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+</style>
