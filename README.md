@@ -1,6 +1,4 @@
-# Compromis Gürtel Quiz
-
-> A vue.js quiz app to guage your knowledge regarding the Gürtel corruption case in Spain
+# Compromis Quiz: Qui l'ha dit més grossa?
 
 ## Build Setup
 

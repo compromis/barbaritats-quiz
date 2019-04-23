@@ -6,23 +6,37 @@
         <img src="../assets/images/emoji.png" width="100%" alt="Emoji" />
       </div>
       <div class="intro-heading-title">
-        <Title />
+        <TitleCas v-if="$i18n.locale === 'ca'" />
+        <TitleVal v-else />
       </div>
     </h3>
-    <h2 class="intro-subheading">Posa't a prova</h2>
-    <p class="intro-description">Comença el judici del cas Gürtel, una de les trames de corrupció política més importants del nostre país que demostra la vinculació del PP con “las amiguitos del alma”, i volem saber si estàs tan al dia com et penses.</p>
-    <p class="intro-action"><a href="#q1" v-scroll-to="'#q1'"><span class="emoji">📝</span> Comença</a></p>
+    <h2 class="intro-subheading">{{ $t('intro.title') }}</h2>
+    <p class="intro-description">{{ $t('intro.description') }}</p>
+    <ul>
+      <li><button @click="switchLanguage('ca')">Valencià</button></li>
+      <li><button @click="switchLanguage('es')">Castellano</button></li>
+    </ul>
+    <p class="intro-action"><a href="#q1" v-scroll-to="'#q1'"><span class="emoji">📝</span> {{ $t('intro.start') }}</a></p>
   </section>
 </template>
 
 <script>
-import Title from '../assets/images/title.svg'
+import TitleCas from '../assets/images/title-cas.svg'
+import TitleVal from '../assets/images/title-val.svg'
 
 export default {
   name: 'quiz-intro',
 
   components: {
-    Title
+    TitleCas,
+    TitleVal
+  },
+
+  methods: {
+    switchLanguage (lang) {
+      this.$i18n.locale = lang
+      document.documentElement.lang = lang
+    }
   }
 }
 </script>
@@ -46,7 +60,8 @@ export default {
   &-title {
     max-width: 600px;
     margin: 0 auto;
-    margin-top: -6rem;
+    margin-top: -4rem;
+    margin-bottom: -3rem;
   }
 }
 
