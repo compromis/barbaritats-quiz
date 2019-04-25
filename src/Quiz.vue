@@ -47,7 +47,6 @@ export default {
   watch: {
     '$i18n.locale': {
       handler: function (newLocale) {
-        console.log(newLocale)
         if (newLocale === 'es') {
           this.questions = QuizCas.questions
           this.results = QuizCas.results
