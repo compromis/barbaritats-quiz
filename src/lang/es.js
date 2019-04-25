@@ -5,7 +5,7 @@ export default {
   },
   intro: {
     title: 'Ponte a prueba',
-    description: 'Arriba la campanya electoral i les mentides i barbaritats que diuen alguns polítics van que volen. Eres capaç de relacionar la burrada amb el seu responsable?',
+    description: 'Estamos en campaña electoral y las mentiras y barbaridades que dicen algunos políticos van que vuelan. ¿Eres capaz de relacionar la burrada con su responsable?',
     start: 'Empieza'
   }
 }

@@ -104,21 +104,21 @@
       "options": [
         {
           "name": "Pablo Casado",
-          "message": "La resposta és de VOX , i és tan absurda l'afirmació que no tenim més comentaris al respecte",
+          "message": "Casi, fue Vox, i es una afirmación tan absurda que no hay más comentarios al respecto",
           "points": 0,
+          "gif": "1014RBn4HVSTK"
+        },
+        {
+          "name": "Algún loquito de Vox",
+          "message": "És tan absurda l'afirmació, que no tenim més comentaris al respecte.",
+          "points": 1,
           "gif": "nmOCWtinjc3Be"
         },
         {
-          "name": "Algún loquito de VOX",
-          "message": "És tan absurda l'afirmació, que no tenim més comentaris al respecte.",
-          "points": 1,
-          "gif": "rZ10JtoPRv1Ly"
-        },
-        {
           "name": "Ninguno de los dos",
-          "message": "La resposta és de VOX , i és tan absurda l'afirmació que no tenim més comentaris al respecte",
+          "message": "Casi, fue Vox, i es una afirmación tan absurda que no hay más comentarios al respecto",
           "points": 0,
-          "gif": "rZ10JtoPRv1Ly"
+          "gif": "1014RBn4HVSTK"
         }
       ]
     },
@@ -154,13 +154,13 @@
           "name": "Pablo Casado",
           "message": "La veritat és que podia ser una frase de qualsevol dels tres candidats. No obstant això, en aquest cas en concret, la barbaritat ve del cap del senyor de VOX, el nom del qual és millor no recordar.",
           "points": 0,
-          "gif": "1ZkMDj88mQ1rO"
+          "gif": "13X06escM4OQTK"
         },
         {
           "name": "Albert Rivera",
           "message": "La veritat és que podia ser una frase de qualsevol dels tres candidats. No obstant això, en aquest cas en concret, la barbaritat ve del cap del senyor de VOX, el nom del qual és millor no recordar.",
           "points": 0,
-          "gif": "1ZkMDj88mQ1rO"
+          "gif": "13X06escM4OQTK"
         },
         {
           "name": "El loquito de Vox",
